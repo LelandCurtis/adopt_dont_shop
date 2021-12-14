@@ -9,12 +9,12 @@
       <p><%= link_to "#{pet_app.pet.name}", "/pets/#{pet_app.pet.id}" %></p>
       <% if pet_app.status == "In Progress" %>
         <%= form_with url: "/admin/pet_applications/#{pet_app.id}", method: :patch, local: true do |f| %>
-          <%= f.hidden_field :status, :value => "Accept"%>
+          <%= f.hidden_field :status, :value => "Accepted"%>
           <%= f.submit "Accept" %>
         <% end %>
 
         <%= form_with url: "/admin/pet_applications/#{pet_app.id}", method: :patch, local: true do |f| %>
-          <%= f.hidden_field :status, :value => "Reject"%>
+          <%= f.hidden_field :status, :value => "Rejected"%>
           <%= f.submit "Reject" %>
         <% end %>
       <% end %>
