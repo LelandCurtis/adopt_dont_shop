@@ -12,7 +12,7 @@ RSpec.describe Application, type: :model do
     @pet_3 = Pet.create!(adoptable: true, age: 13, breed: "German Shepard", name: "Molly", shelter_id: @shelter.id)
 
 
-    @application_1 = Application.create(name: 'Steve', address: '135 Waddle Road', city: 'Dallas', state: 'TX', zip: 75001, description: "I really want a dog", status: "In Progress")
+    @application_1 = Application.create(name: 'Steve', address: '135 Waddle Road', city: 'Dallas', state: 'TX', zip: 75001, description: "I really want a dog", status: "Pending")
 
     @pet_application_1 = PetApplication.create!(pet_id: @pet_1.id, application_id: @application_1.id)
     @pet_application_2 = PetApplication.create!(pet_id: @pet_2.id, application_id: @application_1.id)
