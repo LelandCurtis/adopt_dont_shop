@@ -22,8 +22,8 @@ RSpec.describe PetApplication, type: :model do
 
   describe "already_approved?" do
     it "returns true if the pet has another approved application. False if it does not." do
-      application_2 = Application.create(name: 'Steve', address: '135 Waddle Road', city: 'Dallas', state: 'TX', zip: 75001, description: "I really want a dog", status: "Accepted")
-      pet_application_1 = PetApplication.create!(pet_id: @pet_1.id, application_id: application_2.id)
+      application_2 = Application.create(name: 'Steve', address: '135 Waddle Road', city: 'Dallas', state: 'TX', zip: 75001, description: "I really want a dog", status: "Approved")
+      pet_application_1 = PetApplication.create!(pet_id: @pet_1.id, application_id: application_2.id, status: "Approved")
 
       expect(@pet_application_1.already_approved?).to eq(true)
       expect(@pet_application_2.already_approved?).to eq(false)
