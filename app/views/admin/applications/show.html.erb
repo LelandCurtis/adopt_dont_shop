@@ -4,7 +4,7 @@
 
 <h3>Dogs Applied For: </h3>
 <div class="pets">
-  <% @pet_applications.each do |pet_app| %>
+  <% @application.pet_applications.each do |pet_app| %>
     <div class=<%= "pet_#{pet_app.id}" %>>
       <p><%= link_to "#{pet_app.pet.name}", "/pets/#{pet_app.pet.id}" %></p>
       <% if pet_app.status == "Pending" %>

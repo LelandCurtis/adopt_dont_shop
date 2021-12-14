@@ -61,19 +61,19 @@ RSpec.describe 'admin show page' do
 
     expect(@application_1.status).to eq("Pending")
     within("div.pet_#{@pet_application_1.id}") do
-      click_button "Accept"
+      click_button "Approve"
     end
     expect(@application_1.status).to eq("Pending")
 
     within("div.pet_#{@pet_application_2.id}") do
-      click_button "Accept"
+      click_button "Approve"
     end
     expect(@application_1.status).to eq("Pending")
 
     within("div.pet_#{@pet_application_3.id}") do
-      click_button "Accept"
+      click_button "Approve"
     end
-    expect(@application_1.status).to eq("Accepted")
+    expect(@application_1.status).to eq("Approved")
   end
 
   it 'show page checks pet_application status and adjusts application status to Rejected if any are marked rejected' do
@@ -81,7 +81,7 @@ RSpec.describe 'admin show page' do
 
     expect(@application_1.status).to eq("Pending")
     within("div.pet_#{@pet_application_1.id}") do
-      click_button "Accept"
+      click_button "Approve"
     end
     expect(@application_1.status).to eq("Pending")
 
@@ -91,7 +91,7 @@ RSpec.describe 'admin show page' do
     expect(@application_1.status).to eq("Pending")
 
     within("div.pet_#{@pet_application_3.id}") do
-      click_button "Accept"
+      click_button "Approve"
     end
     expect(@application_1.status).to eq("Rejected")
   end
