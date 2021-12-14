@@ -26,4 +26,14 @@ class Application < ApplicationRecord
   def reject
     update(status: "Rejected")
   end
+
+  def update_status
+    if status != check_status
+      if check_status == "Approved"
+        approve
+      else
+        reject
+      end
+    end
+  end
 end
