@@ -83,9 +83,9 @@ RSpec.describe Application, type: :model do
     it "if pet_app status is different from app status, and it should be approved, approve application and update pets" do
       application = Application.create(name: 'Steve', address: '135 Waddle Road', city: 'Dallas', state: 'TX', zip: 75001, description: "I really want a dog", status: "Pending")
 
-      pet_application_1 = PetApplication.create!(pet_id: @pet_1.id, application_id: application_1.id, status: "Pending")
-      pet_application_2 = PetApplication.create!(pet_id: @pet_2.id, application_id: application_1.id, status: "Approved")
-      pet_application_3 = PetApplication.create!(pet_id: @pet_3.id, application_id: application_1.id, status: "Approved")
+      pet_application_1 = PetApplication.create!(pet_id: @pet_1.id, application_id: application.id, status: "Pending")
+      pet_application_2 = PetApplication.create!(pet_id: @pet_2.id, application_id: application.id, status: "Approved")
+      pet_application_3 = PetApplication.create!(pet_id: @pet_3.id, application_id: application.id, status: "Approved")
 
       expect(application.check_status).to eq("Pending")
       expect(application.status).to eq("Pending")
@@ -104,9 +104,9 @@ RSpec.describe Application, type: :model do
     it "if pet_app status is different from app status, and it should be rejected, reject application and don't update pets" do
       application = Application.create(name: 'Steve', address: '135 Waddle Road', city: 'Dallas', state: 'TX', zip: 75001, description: "I really want a dog", status: "Pending")
 
-      pet_application_1 = PetApplication.create!(pet_id: @pet_1.id, application_id: application_1.id, status: "Pending")
-      pet_application_2 = PetApplication.create!(pet_id: @pet_2.id, application_id: application_1.id, status: "Approved")
-      pet_application_3 = PetApplication.create!(pet_id: @pet_3.id, application_id: application_1.id, status: "Approved")
+      pet_application_1 = PetApplication.create!(pet_id: @pet_1.id, application_id: application.id, status: "Pending")
+      pet_application_2 = PetApplication.create!(pet_id: @pet_2.id, application_id: application.id, status: "Approved")
+      pet_application_3 = PetApplication.create!(pet_id: @pet_3.id, application_id: application.id, status: "Approved")
 
       expect(application.check_status).to eq("Pending")
       expect(application.status).to eq("Pending")
