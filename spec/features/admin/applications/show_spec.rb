@@ -54,6 +54,45 @@ RSpec.describe 'admin show page' do
       expect(page).to_not have_button("Reject")
       expect(page).to have_content("Rejected")
     end
+  end
 
+  it 'show page checks pet_application status and adjusts application status to accepted if all are marked accepted' do
+    visit "/admin/applications/#{@application_1.id}"
+
+    expect(@application_1.status).to eq("Pending")
+    within("div.pet_#{@pet_application_1.id}") do
+      click_button "Accept"
+    end
+    expect(@application_1.status).to eq("Pending")
+
+    within("div.pet_#{@pet_application_2.id}") do
+      click_button "Accept"
+    end
+    expect(@application_1.status).to eq("Pending")
+
+    within("div.pet_#{@pet_application_3.id}") do
+      click_button "Accept"
+    end
+    expect(@application_1.status).to eq("Accepted")
+  end
+
+  it 'show page checks pet_application status and adjusts application status to Rejected if any are marked rejected' do
+    visit "/admin/applications/#{@application_1.id}"
+
+    expect(@application_1.status).to eq("Pending")
+    within("div.pet_#{@pet_application_1.id}") do
+      click_button "Accept"
+    end
+    expect(@application_1.status).to eq("Pending")
+
+    within("div.pet_#{@pet_application_2.id}") do
+      click_button "Reject"
+    end
+    expect(@application_1.status).to eq("Pending")
+
+    within("div.pet_#{@pet_application_3.id}") do
+      click_button "Accept"
+    end
+    expect(@application_1.status).to eq("Rejected")
   end
 end
