@@ -7,13 +7,16 @@
   <% @application.pet_applications.each do |pet_app| %>
     <div class=<%= "pet_#{pet_app.id}" %>>
       <p><%= link_to "#{pet_app.pet.name}", "/pets/#{pet_app.pet.id}" %></p>
-      <% if pet_app.status == "Pending" && !pet_app.already_approved? %>
-        <%= form_with url: "/admin/pet_applications/#{pet_app.id}", method: :patch, local: true do |f| %>
-          <%= f.hidden_field :status, :value => "Approved"%>
-          <%= f.submit "Approve" %>
-        <% end %>
-      <% end %>
       <% if pet_app.status == "Pending" %>
+        <% if pet_app.already_approved? %>
+          <p>Sorry, this pet has already been approved for adoption</p>
+        <% else %>
+          <%= form_with url: "/admin/pet_applications/#{pet_app.id}", method: :patch, local: true do |f| %>
+            <%= f.hidden_field :status, :value => "Approved"%>
+            <%= f.submit "Approve" %>
+          <% end %>
+        <% end %>
+
         <%= form_with url: "/admin/pet_applications/#{pet_app.id}", method: :patch, local: true do |f| %>
           <%= f.hidden_field :status, :value => "Rejected"%>
           <%= f.submit "Reject" %>
