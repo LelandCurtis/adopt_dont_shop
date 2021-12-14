@@ -7,6 +7,6 @@ class PetApplicationsController < ApplicationController
   private
 
   def pet_app_params
-    params.permit(:pet_id, :application_id)
+    params.permit(:pet_id, :application_id, :status)
   end
 end
