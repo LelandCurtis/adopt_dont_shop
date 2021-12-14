@@ -33,4 +33,25 @@ RSpec.describe 'admin show page' do
       expect(page).to have_button("Reject")
     end
   end
+
+  it 'has accept and reject buttons that update the pet_application status' do
+    visit "/admin/applications/#{@application_1.id}"
+
+    within("div.pet_#{@pet_application_1.id}") do
+      expect(@pet_application_1.status).to eq("In Progress")
+      click_button "Accept"
+      expect(@pet_application_1.status).to eq("Accepted")
+      expect(page).to_not have_button("Accept")
+      expect(page).to have_content("Accepted")
+    end
+
+    within("div.pet_#{@pet_application_2.id}") do
+      expect(@pet_application_2.status).to eq("In Progress")
+      click_button "Reject"
+      expect(@pet_application_2.status).to eq("Rejected")
+      expect(page).to_not have_button("Reject")
+      expect(page).to have_content("Rejected")
+    end
+
+  end
 end
