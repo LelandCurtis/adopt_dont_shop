@@ -45,31 +45,33 @@ RSpec.describe Application, type: :model do
 
   describe '.approve' do
     it "changes the status of the application to Approved" do
-      expect(@application_1.check_status).to eq("Pending")
+      expect(@application_1.status).to eq("Pending")
       @application_1.approve
-      expect(@application_1.check_status).to eq("Approved")
+      expect(@application_1.status).to eq("Approved")
     end
 
     it "changes all pets to not adoptable" do
-      expect(@application_1.check_status).to eq("Pending")
       expect(@pet_1.adoptable).to eq(true)
       expect(@pet_2.adoptable).to eq(true)
       expect(@pet_3.adoptable).to eq(true)
       @application_1.approve
-      expect(@application_1.check_status).to eq("Approved")
-      expect(@pet_1.adoptable).to eq(false)
-      expect(@pet_2.adoptable).to eq(false)
-      expect(@pet_3.adoptable).to eq(false)
+      expect(@pet_1.reload.adoptable).to eq(false)
+      expect(@pet_2.reload.adoptable).to eq(false)
+      expect(@pet_3.reload.adoptable).to eq(false)
     end
   end
 
   describe '.reject' do
-    it 'changes the status of the application to Rejected' do
-      expect(@application_1.check_status).to eq("Pending")
+    it 'changes the status of the application to Rejected without changing pet adoptability' do
+      expect(@application_1.status).to eq("Pending")
       expect(@pet_1.adoptable).to eq(true)
+      expect(@pet_2.adoptable).to eq(true)
+      expect(@pet_3.adoptable).to eq(true)
       @application_1.reject
-      expect(@application_1.check_status).to eq("Rejected")
-      expect(@pet_1.adoptable).to eq(true)
+      expect(@application_1.status).to eq("Rejected")
+      expect(@pet_1.reload.adoptable).to eq(true)
+      expect(@pet_2.reload.adoptable).to eq(true)
+      expect(@pet_3.reload.adoptable).to eq(true)
     end
   end
 
@@ -96,9 +98,9 @@ RSpec.describe Application, type: :model do
       application.update_status
 
       expect(application.status).to eq("Approved")
-      expect(@pet_1.adoptable).to eq(false)
-      expect(@pet_2.adoptable).to eq(false)
-      expect(@pet_3.adoptable).to eq(false)
+      expect(@pet_1.reload.adoptable).to eq(false)
+      expect(@pet_2.reload.adoptable).to eq(false)
+      expect(@pet_3.reload.adoptable).to eq(false)
     end
 
     it "if pet_app status is different from app status, and it should be rejected, reject application and don't update pets" do
