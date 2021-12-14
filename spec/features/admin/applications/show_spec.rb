@@ -24,9 +24,14 @@ RSpec.describe 'admin show page' do
     expect(page).to have_content(@pet_3.name)
   end
 
-  it 'has an approve button next to all open pets' do
+  it 'has an approve and reject button next to all open pets' do
     visit "/admin/applications/#{@application_1.id}"
 
-    
+    within("div.pet_#{@pet_1.id}") do
+      expect(page).to have_content(@pet_1.name)
+      expect(page).to have_button("Accept")
+      expect(page).to have_button("Reject")
+    end
+
   end
 end
