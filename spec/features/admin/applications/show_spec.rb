@@ -98,10 +98,14 @@ RSpec.describe 'admin show page' do
 
 
   it "doesn't show an approve button if the pet has another approved application." do
-    application_2 = Application.create(name: 'Steve', address: '135 Waddle Road', city: 'Dallas', state: 'TX', zip: 75001, description: "I really want a dog", status: "Approved")
-    pet_application_1 = PetApplication.create!(pet_id: @pet_1.id, application_id: application_2.id, status: "Approved")
 
-    within("div.pet_#{@pet_application_3.id}") do
+
+    application_2 = Application.create(name: 'Steve', address: '135 Waddle Road', city: 'Dallas', state: 'TX', zip: 75001, description: "I really want a dog", status: "Approved")
+    pet_application_11 = PetApplication.create!(pet_id: @pet_1.id, application_id: application_2.id, status: "Approved")
+
+    visit "/admin/applications/#{@application_1.id}"
+
+    within("div.pet_#{@pet_application_2.id}") do
       expect(page).to have_button "Approve"
     end
 
