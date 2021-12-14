@@ -42,4 +42,34 @@ RSpec.describe Application, type: :model do
       expect(@application_1.check_status).to eq("Rejected")
     end
   end
+
+  describe '.approve' do
+    it "changes the status of the application to Approved" do
+      expect(@application_1.check_status).to eq("Pending")
+      @application_1.approve
+      expect(@application_1.check_status).to eq("Approved")
+    end
+
+    it "changes all pets to not adoptable" do
+      expect(@application_1.check_status).to eq("Pending")
+      expect(@pet_1.adoptable).to eq(true)
+      expect(@pet_2.adoptable).to eq(true)
+      expect(@pet_3.adoptable).to eq(true)
+      @application_1.approve
+      expect(@application_1.check_status).to eq("Approved")
+      expect(@pet_1.adoptable).to eq(false)
+      expect(@pet_2.adoptable).to eq(false)
+      expect(@pet_3.adoptable).to eq(false)
+    end
+  end
+
+  describe '.reject' do
+    it 'changes the status of the application to Rejected' do
+      expect(@application_1.check_status).to eq("Pending")
+      expect(@pet_1.adoptable).to eq(true)
+      @application_1.reject
+      expect(@application_1.check_status).to eq("Rejected")
+      expect(@pet_1.adoptable).to eq(true)
+    end
+  end
 end
