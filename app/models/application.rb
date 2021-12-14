@@ -15,4 +15,15 @@ class Application < ApplicationRecord
       "Approved"
     end
   end
+
+  def approve
+    update(status: "Approved")
+    pets.each do |pet|
+      pet.update(adoptable: false)
+    end
+  end
+
+  def reject
+    update(status: "Rejected")
+  end
 end
