@@ -7,7 +7,7 @@ class Application < ApplicationRecord
     # If any are in progress, return In Progress
     # Else no In Progress exist, if any rejected exists, return rejected
     # Only available option left is no In Progress / no Rejected, therefore all Accepted.
-    if pet_applications.exists?(status: "In Progress")
+    if pet_applications.exists?(status: "Pending")
       "Pending"
     elsif pet_applications.exists?(status: "Rejected")
       "Rejected"

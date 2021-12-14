@@ -9,7 +9,7 @@ RSpec.describe 'admin show page' do
     @pet_3 = Pet.create!(adoptable: true, age: 13, breed: "German Shepard", name: "Molly", shelter_id: @shelter.id)
 
 
-    @application_1 = Application.create(name: 'Steve', address: '135 Waddle Road', city: 'Dallas', state: 'TX', zip: 75001, description: "I really want a dog", status: "In Progress")
+    @application_1 = Application.create(name: 'Steve', address: '135 Waddle Road', city: 'Dallas', state: 'TX', zip: 75001, description: "I really want a dog", status: "Pending")
 
     @pet_application_1 = PetApplication.create!(pet_id: @pet_1.id, application_id: @application_1.id)
     @pet_application_2 = PetApplication.create!(pet_id: @pet_2.id, application_id: @application_1.id)
@@ -38,7 +38,7 @@ RSpec.describe 'admin show page' do
     visit "/admin/applications/#{@application_1.id}"
 
     within("div.pet_#{@pet_application_1.id}") do
-      expect(@pet_application_1.status).to eq("In Progress")
+      expect(@pet_application_1.status).to eq("Pending")
       click_button "Approve"
       expect(current_path).to eq("/admin/applications/#{@application_1.id}")
       expect(PetApplication.find(@pet_application_1.id).status).to eq("Approved")
@@ -47,7 +47,7 @@ RSpec.describe 'admin show page' do
     end
 
     within("div.pet_#{@pet_application_2.id}") do
-      expect(@pet_application_2.status).to eq("In Progress")
+      expect(@pet_application_2.status).to eq("Pending")
       click_button "Reject"
       expect(current_path).to eq("/admin/applications/#{@application_1.id}")
       expect(PetApplication.find(@pet_application_2.id).status).to eq("Rejected")
