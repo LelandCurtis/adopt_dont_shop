@@ -4,13 +4,13 @@
 
 <h3>Dogs Applied For: </h3>
 <div class="pets">
-  <% @pet_applications.each do |pet_app| %>
+  <% @application.pet_applications.each do |pet_app| %>
     <div class=<%= "pet_#{pet_app.id}" %>>
       <p><%= link_to "#{pet_app.pet.name}", "/pets/#{pet_app.pet.id}" %></p>
-      <% if pet_app.status == "In Progress" %>
+      <% if pet_app.status == "Pending" %>
         <%= form_with url: "/admin/pet_applications/#{pet_app.id}", method: :patch, local: true do |f| %>
-          <%= f.hidden_field :status, :value => "Accepted"%>
-          <%= f.submit "Accept" %>
+          <%= f.hidden_field :status, :value => "Approved"%>
+          <%= f.submit "Approve" %>
         <% end %>
 
         <%= form_with url: "/admin/pet_applications/#{pet_app.id}", method: :patch, local: true do |f| %>
@@ -23,3 +23,6 @@
     </div>
   <% end %>
 </div>
+
+<br>
+<h3><%= "Application Status: #{@application.status}" %></h3>
