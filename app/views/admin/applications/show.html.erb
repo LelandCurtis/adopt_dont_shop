@@ -17,6 +17,8 @@
           <%= f.hidden_field :status, :value => "Rejected"%>
           <%= f.submit "Reject" %>
         <% end %>
+      <% else %>
+        <p><%= pet_app.status %></p>
       <% end %>
     </div>
   <% end %>
