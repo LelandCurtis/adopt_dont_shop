@@ -29,7 +29,7 @@ RSpec.describe 'admin show page' do
 
     within("div.pet_#{@pet_application_1.id}") do
       expect(page).to have_content(@pet_1.name)
-      expect(page).to have_button("Accept")
+      expect(page).to have_button("Approve")
       expect(page).to have_button("Reject")
     end
   end
@@ -39,11 +39,11 @@ RSpec.describe 'admin show page' do
 
     within("div.pet_#{@pet_application_1.id}") do
       expect(@pet_application_1.status).to eq("In Progress")
-      click_button "Accept"
+      click_button "Approve"
       expect(current_path).to eq("/admin/applications/#{@application_1.id}")
-      expect(PetApplication.find(@pet_application_1.id).status).to eq("Accepted")
-      expect(page).to_not have_button("Accept")
-      expect(page).to have_content("Accepted")
+      expect(PetApplication.find(@pet_application_1.id).status).to eq("Approved")
+      expect(page).to_not have_button("Approve")
+      expect(page).to have_content("Approved")
     end
 
     within("div.pet_#{@pet_application_2.id}") do
