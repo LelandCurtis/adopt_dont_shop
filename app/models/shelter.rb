@@ -77,4 +77,8 @@ class Shelter < ApplicationRecord
   def avg_age
     pets.where(adoptable: true).average(:age).to_f.round(2)
   end
+
+  def pets_with_pending_applications
+    pets.with_pending_applications
+  end
 end

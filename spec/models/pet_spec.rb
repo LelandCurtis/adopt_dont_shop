@@ -32,6 +32,16 @@ RSpec.describe Pet, type: :model do
         expect(Pet.adoptable).to eq([@pet_1, @pet_2])
       end
     end
+
+    describe '#with_pending_applications' do
+      it "returns all the pets that have pending applications" do
+        application_1 = Application.create!(name: 'Steve', address: '135 Waddle Road', city: 'Dallas', state: 'TX', zip: 75001, description: "I really want a dog", status: "Pending")
+        pet_application_1 = PetApplication.create!(pet_id: @pet_1.id, application_id: application_1.id, status: "Approved")
+        pet_application_2 = PetApplication.create!(pet_id: @pet_2.id, application_id: application_1.id, status: "Rejected")
+        pet_application_4 = PetApplication.create!(pet_id: @pet_3.id, application_id: application_1.id, status: "Pending")
+        expect(Pet.with_pending_applications).to eq([@pet_3])
+      end
+    end
   end
 
   describe 'instance methods' do
