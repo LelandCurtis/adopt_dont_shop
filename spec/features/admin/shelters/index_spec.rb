@@ -45,6 +45,8 @@ RSpec.describe 'admin shelter index page' do
       expect(current_path).to eq("/admin/shelters/#{@shelter_1.id}")
     end
 
+    visit '/admin/shelters'
+
     within('div.pending') do
       click_link "#{@shelter_1.name}"
       expect(current_path).to eq("/admin/shelters/#{@shelter_1.id}")
