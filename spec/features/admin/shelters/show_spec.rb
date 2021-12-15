@@ -59,4 +59,13 @@ RSpec.describe 'admin shelters show page' do
       expect(page).to_not have_content(@pet_2.name)
     end
   end
+
+  it "in the action required section all pets have a link to their corresponding pending application" do
+    visit "/admin/shelters/#{@shelter_1.id}"
+
+    within "div.pet_app_#{@pet_application_4.id}" do
+      click_link "here"
+      expect(current_path).to eq("/admin/applications/#{@pet_application_4.id}")
+    end
+  end
 end
