@@ -24,6 +24,16 @@ class Shelter < ApplicationRecord
     pets.where(adoptable: true)
   end
 
+  def adoptable_pet_count
+    adoptable_pets.count
+  end
+
+  def adopted_pet_count
+    pets.joins(:applications)
+        .where(applications: {status: "Approved"})
+        .count
+  end
+
   def alphabetical_pets
     adoptable_pets.order(name: :asc)
   end
@@ -62,5 +72,9 @@ class Shelter < ApplicationRecord
       "SELECT city FROM shelters
       WHERE id = #{id}"
     )[0].city
+  end
+
+  def avg_age
+    pets.where(adoptable: true).average(:age).to_f.round(2)
   end
 end
