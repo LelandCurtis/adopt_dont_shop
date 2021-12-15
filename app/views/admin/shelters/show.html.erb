@@ -6,3 +6,12 @@
   <p><%= "There are #{@shelter.adoptable_pet_count} adoptable pets in this shelter" %></p>
   <p><%= "#{@shelter.adopted_pet_count} pets have been adopted from this shelter" %></p>
 </div>
+
+<div class="action_required">
+  <h3>Action Required</h3>
+  <% @shelter.pets_with_pending_applications.each do |pet| %>
+    <p><%= pet.name %></p>
+    
+  <% end %>
+
+</div>
