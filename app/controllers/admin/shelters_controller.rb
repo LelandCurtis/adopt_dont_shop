@@ -7,5 +7,6 @@ class Admin::SheltersController < ApplicationController
   def show
     @sql_shelter_name = Shelter.sql_name(params[:id])
     @sql_shelter_city = Shelter.sql_city(params[:id])
+    @shelter = Shelter.find(params[:id])
   end
 end
