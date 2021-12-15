@@ -15,10 +15,15 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    Application.create(application_params)
+    application = Application.new(application_params)
 
-    new_application = Application.last
-    redirect_to "/applications/#{new_application.id}"
+    if application.save
+      redirect_to "/applications/#{application.id}"
+    else
+      flash[:notice] = "Error: Invalid application. Please try again."
+      flash[:alert] = application.errors.full_messages
+      render :new
+    end
   end
 
   def edit

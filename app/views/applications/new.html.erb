@@ -1,16 +1,23 @@
 <fieldset>
   <legend>Create New Application</legend>
+  <% if flash.notice != nil %>
+    <p><%= flash.notice %></p>
+    <% flash.alert.each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+  <% end %>
+
   <%= form_with url: '/applications', method: :POST, local: true do |form|%>
     <%= form.label :name %>
-    <%= form.text_field :name, required: true %><br>
+    <%= form.text_field :name %><br>
     <%= form.label :address, "Street Address"%>
-    <%= form.text_field :address, required: true %><br>
+    <%= form.text_field :address %><br>
     <%= form.label :city %>
-    <%= form.text_field :city, required: true %><br>
+    <%= form.text_field :city %><br>
     <%= form.label :state %>
-    <%= form.text_field :state, required: true %><br>
+    <%= form.text_field :state %><br>
     <%= form.label :zip, "Zip Code" %>
-    <%= form.number_field :zip, required: true %><br>
+    <%= form.number_field :zip %><br>
     <%= form.hidden_field :status, :value => "In Progress"  %>
     <%= form.submit "Submit" %><br>
   <% end %>
