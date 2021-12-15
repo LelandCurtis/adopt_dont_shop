@@ -104,5 +104,11 @@ RSpec.describe Shelter, type: :model do
         expect(Shelter.sql_city(@shelter_1.id)).to eq(@shelter_1.city)
       end
     end
+
+    describe '.avg_age' do
+      it 'returns the average age of all the pets in the shelter' do
+        expect(@shelter_1.avg_age).to eq(4.33)
+      end
+    end
   end
 end
