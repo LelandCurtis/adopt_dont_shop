@@ -65,6 +65,6 @@ class Shelter < ApplicationRecord
   end
 
   def avg_age
-    pets.average(:age).round(2)
+    pets.where(adoptable: true).average(:age).round(2)
   end
 end
