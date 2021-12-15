@@ -18,7 +18,7 @@ RSpec.describe 'admin shelter index page' do
     end
   end
 
-  it 'has a section that lists only shelters with pending applications' do
+  it 'has a section that lists only shelters with pending applications and they are listed alphabetically' do
 
     pet_1 = Pet.create!(adoptable: true, age: 10, breed: "Hound", name: "Pete", shelter_id: @shelter_1.id)
     pet_2 = Pet.create!(adoptable: true, age: 3, breed: "GSP", name: "Newton", shelter_id: @shelter_2.id)
@@ -33,9 +33,7 @@ RSpec.describe 'admin shelter index page' do
     expect(page).to have_content("Shelters with Pending Applications")
 
     within('div.pending') do
-      expect(page).to have_content(@shelter_1.name)
-      expect(page).to have_content(@shelter_2.name)
-      expect(page).to_not have_content(@shelter_3.name)
+      expect(@shelter_1.name).to appear_before(@shelter_2.name)
     end
   end
 end

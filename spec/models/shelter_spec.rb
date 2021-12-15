@@ -60,6 +60,12 @@ RSpec.describe Shelter, type: :model do
         expect(Shelter.with_pending_applications).to eq([@shelter_1])
       end
     end
+
+    describe '#order_by_name_asc' do
+      it 'lists all shelters aplhabetically' do
+        expect(Shelter.order_by_name_asc).to eq([@shelter_1, @shelter_3, @shelter_2])
+      end
+    end
   end
 
   describe 'instance methods' do
