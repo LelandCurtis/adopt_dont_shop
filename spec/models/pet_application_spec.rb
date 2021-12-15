@@ -29,4 +29,12 @@ RSpec.describe PetApplication, type: :model do
       expect(@pet_application_2.already_approved?).to eq(false)
     end
   end
+
+  describe '#pending' do
+    it 'returns all the pet_applications where the status is pending' do
+      pet_application_4 = PetApplication.create!(pet_id: @pet_2.id, application_id: @application_1.id, status: "Approved")
+      pet_application_5 = PetApplication.create!(pet_id: @pet_3.id, application_id: @application_1.id, status: "Rejected")
+      expect(PetApplication.pending).to eq([@pet_application_1, @pet_application_2, @pet_application_3])
+    end
+  end
 end
