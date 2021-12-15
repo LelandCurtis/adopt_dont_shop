@@ -78,6 +78,15 @@ class Shelter < ApplicationRecord
     pets.where(adoptable: true).average(:age).to_f.round(2)
   end
 
+  def pending_pet_apps
+    PetApplication.joins(:pet)
+    .joins(:shelter)
+    .where(pet_applications: {status: 'Pending'}, shelters: {id: id})
+    .select('pet_applications.*')
+
+  end
+
+
   def pets_with_pending_applications
     pets.with_pending_applications
   end
