@@ -83,7 +83,7 @@ class Shelter < ApplicationRecord
     .joins(:shelter)
     .where(pet_applications: {status: 'Pending'}, shelters: {id: id})
     .select('pet_applications.*')
-
+    .distinct
   end
 
 
