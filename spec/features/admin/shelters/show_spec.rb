@@ -65,7 +65,7 @@ RSpec.describe 'admin shelters show page' do
 
     within "div.pet_app_#{@pet_application_4.id}" do
       click_link "here"
-      expect(current_path).to eq("/admin/applications/#{@pet_application_4.id}")
+      expect(current_path).to eq("/admin/applications/#{@pet_application_4.application.id}")
     end
   end
 end

@@ -10,7 +10,9 @@
 <div class="action_required">
   <h3>Action Required</h3>
   <% @pending_pet_apps.each do |pet_app| %>
-    <p><%= pet_app.pet.name %></p>
-    <p><%= link_to "Access #{pet_app.application.name}'s application to Approve or Reject" , "/admin/applications/#{pet_app.application.id}"%></p>
+    <div class=<%= "pet_app_#{pet_app.id}" %>>
+      <p><%= pet_app.pet.name %></p>
+      <p><%= "Approve or Reject #{pet_app.application.name}'s application " %><%= link_to "here" , "/admin/applications/#{pet_app.application.id}"%></p>
+    </div>
   <% end %>
 </div>
