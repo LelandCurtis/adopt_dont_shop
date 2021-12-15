@@ -23,10 +23,12 @@
 
       <% if @pets != nil %>
         <% @pets.each do |pet| %>
-          <%= render partial: '/pets/pet_stats', locals:{pet: pet, edit_link: false, delete_link: false} %>
-          <%= form_with url: "/pet_applications?pet_id=#{pet.id}&application_id=#{@application.id}", method: :post, local: true do |form| %>
-            <%= form.submit "Adopt this Pet" %>
-          <% end %>
+          <div class=<%= "pet_app_#{pet.id}" %>>
+            <%= render partial: '/pets/pet_stats', locals:{pet: pet, edit_link: false, delete_link: false} %>
+            <%= form_with url: "/pet_applications?pet_id=#{pet.id}&application_id=#{@application.id}", method: :post, local: true do |form| %>
+              <%= form.submit "Adopt this Pet" %>
+            <% end %>
+          </div>
         <% end %>
       <% end %>
     </fieldset>
