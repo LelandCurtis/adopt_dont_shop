@@ -29,7 +29,7 @@ RSpec.describe 'admin shelters show page' do
     visit "/admin/shelters/#{@shelter_1.id}"
 
     within 'div.statistics' do
-      expect(page).to have_content("There are #{@shelters.adoptable_pets} in this shelter.")
+      expect(page).to have_content("There are #{@shelter_1.adoptable_pet_count} adoptable pets in this shelter")
     end
   end
 
@@ -37,7 +37,7 @@ RSpec.describe 'admin shelters show page' do
     visit "/admin/shelters/#{@shelter_1.id}"
 
     within 'div.statistics' do
-      expect(page).to have_content("#{@shelters.adopted_pets} pets have been adopted from this shelter.")
+      expect(page).to have_content("#{@shelter_1.adopted_pet_count} pets have been adopted from this shelter")
     end
   end
 end
