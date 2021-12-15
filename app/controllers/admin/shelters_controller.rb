@@ -8,5 +8,6 @@ class Admin::SheltersController < ApplicationController
     @sql_shelter_name = Shelter.sql_name(params[:id])
     @sql_shelter_city = Shelter.sql_city(params[:id])
     @shelter = Shelter.find(params[:id])
+    @pending_pet_apps = PetApplication.pending
   end
 end
