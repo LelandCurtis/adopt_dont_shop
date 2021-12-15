@@ -1,9 +1,16 @@
+<% edit_link = true if local_assigns[:edit_link].nil? %>
+<% delete_link = true if local_assigns[:edit_link].nil? %>
+
 <div class=<%= "pet_#{pet.id}" %>>
   <h3><%= pet.name %></h3>
   <p>Age: <%= pet.age %></p>
   <p>Breed: <%= pet.breed %></p>
   <p>Adoptable: <%= pet.adoptable %></p>
   <p>You can find <%= pet.name %> at <%= pet.shelter_name %>!</p>
-  <p><%= link_to "Edit #{pet.name}", "/pets/#{pet.id}/edit" %></p>
-  <p><%= link_to "Delete #{pet.name}", "/pets/#{pet.id}", method: :delete %></p>
+  <% if edit_link %>
+    <p><%= link_to "Edit #{pet.name}", "/pets/#{pet.id}/edit" %></p>
+  <% end %>
+  <% if delete_link %>
+    <p><%= link_to "Delete #{pet.name}", "/pets/#{pet.id}", method: :delete %></p>
+  <% end %>
 </div>
