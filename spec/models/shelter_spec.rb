@@ -89,13 +89,13 @@ RSpec.describe Shelter, type: :model do
 
     describe '.sql_name' do
       it 'returns the name of a shelter using only SQL' do
-        expect(@shelter_1.sql_name).to eq(@shelter_1.name)
+        expect(Shelter.sql_name(@shelter_1.id)).to eq(@shelter_1.name)
       end
     end
 
     describe '.sql_address' do
       it 'returns the address of a shelter using only SQL' do
-        expect(@shelter_1.sql_address).to eq(@shelter_1.address)
+        expect(Shelter.sql_address(@shelter_1.id)).to eq(@shelter_1.address)
       end
     end
   end
