@@ -63,4 +63,8 @@ class Shelter < ApplicationRecord
       WHERE id = #{id}"
     )[0].city
   end
+
+  def avg_age
+    pets.average(:age).round(2)
+  end
 end
