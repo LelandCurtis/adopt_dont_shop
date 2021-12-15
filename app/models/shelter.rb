@@ -39,6 +39,10 @@ class Shelter < ApplicationRecord
     )
   end
 
+  def self.order_by_name_asc
+    Shelter.order(:name)
+  end
+
   def self.with_pending_applications
     Shelter.select("shelters.*")
     .joins(:pets => {:pet_applications => :application})
