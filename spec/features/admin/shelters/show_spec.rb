@@ -17,11 +17,27 @@ RSpec.describe 'admin shelters show page' do
     expect(page).to have_content(@shelter_1.city)
   end
 
-  xit 'has a section for statistics that shows the average age of all adoptable pets in that shelter.' do    
+  xit 'has a section for statistics that shows the average age of all adoptable pets in that shelter.' do
     visit "/admin/shelters/#{@shelter_1.id}"
 
     within 'div.statistics' do
       expect(page).to have_content("Average age of adoptable pets in this shelter is #{@shelter_1.avg_age}")
+    end
+  end
+
+  it 'shows the number of adoptable pets in statistics section' do
+    visit "/admin/shelters/#{@shelter_1.id}"
+
+    within 'div.statistics' do
+      expect(page).to have_content("There are #{@shelters.adoptable_pets} in this shelter.")
+    end
+  end
+
+  it 'shows the number of pets that have been adopted in the statistics section' do
+    visit "/admin/shelters/#{@shelter_1.id}"
+
+    within 'div.statistics' do
+      expect(page).to have_content("#{@shelters.adopted_pets} pets have been adopted from this shelter.")
     end
   end
 end
