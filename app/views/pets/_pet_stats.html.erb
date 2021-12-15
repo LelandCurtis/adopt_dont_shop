@@ -2,7 +2,7 @@
 <% delete_link = true if local_assigns[:edit_link].nil? %>
 
 <div class=<%= "pet_#{pet.id}" %>>
-  <h3><%= pet.name %></h3>
+  <h3><%= link_to pet.name, "/pets/#{pet.id}" %></h3>
   <p>Age: <%= pet.age %></p>
   <p>Breed: <%= pet.breed %></p>
   <p>Adoptable: <%= pet.adoptable %></p>

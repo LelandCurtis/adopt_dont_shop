@@ -3,7 +3,7 @@
 <% if @application.status != "In Progress" %>
   <h3><%= "Reason For Applying: #{@application.description}" %></h3>
 <% end %>
-<h3>Dogs Applied For: </h3>
+<h3>Pets Applied For: </h3>
 
 <div class="pets">
   <% @application.pets.each do |pet| %>
