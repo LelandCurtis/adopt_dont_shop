@@ -37,6 +37,18 @@ RSpec.describe 'create an application' do
     expect(page).to have_content("In Progress")
   end
 
+  it 'new form throws error if submission is invalid' do
+    visit '/applications/new'
+
+    fill_in "Name", with: 'Steve'
+    fill_in "Street Address", with: '135 Waddle Road'
+    fill_in "State", with: 'TX'
+    fill_in "Zip Code", with: 75001
+    click_button "Submit"
+
+    expect(current_path).to eq("/applications")
+  end
+
   it 'returns to the new applications page after submit clicked if any fields are not filled in' do
     visit '/applications/new'
 
