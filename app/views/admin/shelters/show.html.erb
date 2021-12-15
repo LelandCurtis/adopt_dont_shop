@@ -9,9 +9,8 @@
 
 <div class="action_required">
   <h3>Action Required</h3>
-  <% @shelter.pets_with_pending_applications.each do |pet| %>
-    <p><%= pet.name %></p>
-    
+  <% @pending_pet_apps.each do |pet_app| %>
+    <p><%= pet_app.pet.name %></p>
+    <p><%= link_to "Access #{pet_app.application.name}'s application to Approve or Reject" , "/admin/applications/#{pet_app.application.id}"%></p>
   <% end %>
-
 </div>
