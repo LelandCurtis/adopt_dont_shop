@@ -8,7 +8,5 @@
 <% end %>
 
 <% @pets.each do |pet| %>
-  <div class=<%= "pet_#{pet.id}" %>>
-    <%= render partial: 'pet_stats', locals:{pet: pet} %>
-  </div>
+  <%= render partial: 'pet_stats', locals:{pet: pet} %>
 <% end %>
