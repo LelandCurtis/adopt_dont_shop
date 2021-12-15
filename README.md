@@ -1,8 +1,10 @@
 # Adopt, don't Shop
-![image](https://user-images.githubusercontent.com/15107515/146269633-94a68671-7893-4ea8-97ad-ae006028c33e.png)
 
-### Existing database design
-![visual-schema.png](https://i.postimg.cc/0ywZgQ1W/visual-schema.png)
+## Independent Project
+
+In this project, I built upon the code provided by Turing to create a Pet Adoption Platform. Users will be able to apply to adopt pets, and Admins will be able to approve or reject applications and see statistics for the Shelters, Pets, and Applications in the system.
+## Final database design
+![image](https://user-images.githubusercontent.com/15107515/146269633-94a68671-7893-4ea8-97ad-ae006028c33e.png)
 
 ## Learning Goals
 
