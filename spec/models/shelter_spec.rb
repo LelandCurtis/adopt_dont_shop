@@ -93,9 +93,9 @@ RSpec.describe Shelter, type: :model do
       end
     end
 
-    describe '.sql_address' do
-      it 'returns the address of a shelter using only SQL' do
-        expect(Shelter.sql_address(@shelter_1.id)).to eq(@shelter_1.address)
+    describe '.sql_city' do
+      it 'returns the city of a shelter using only SQL' do
+        expect(Shelter.sql_city(@shelter_1.id)).to eq(@shelter_1.city)
       end
     end
   end

@@ -45,4 +45,18 @@ class Shelter < ApplicationRecord
     .where(applications: {status: 'Pending'})
     .group("shelters.id")
   end
+
+  def self.sql_name(id)
+    Shelter.find_by_sql(
+      "SELECT name FROM shelters
+      WHERE id = #{id}"
+    )[0].name
+  end
+
+  def self.sql_city(id)
+    Shelter.find_by_sql(
+      "SELECT city FROM shelters
+      WHERE id = #{id}"
+    )[0].city
+  end
 end
