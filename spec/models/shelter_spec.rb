@@ -56,7 +56,7 @@ RSpec.describe Shelter, type: :model do
         pet_application_2 = PetApplication.create!(pet_id: @pet_2.id, application_id: application_1.id)
         pet_application_3 = PetApplication.create!(pet_id: @pet_3.id, application_id: application_2.id)
 
-      
+
         expect(Shelter.with_pending_applications).to eq([@shelter_1])
       end
     end
@@ -84,6 +84,18 @@ RSpec.describe Shelter, type: :model do
     describe '.pet_count' do
       it 'returns the number of pets at the given shelter' do
         expect(@shelter_1.pet_count).to eq(3)
+      end
+    end
+
+    describe '.sql_name' do
+      it 'returns the name of a shelter using only SQL' do
+        expect(Shelter.sql_name(@shelter_1.id)).to eq(@shelter_1.name)
+      end
+    end
+
+    describe '.sql_city' do
+      it 'returns the city of a shelter using only SQL' do
+        expect(Shelter.sql_city(@shelter_1.id)).to eq(@shelter_1.city)
       end
     end
   end
