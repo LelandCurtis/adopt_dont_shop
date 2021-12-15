@@ -7,7 +7,6 @@
   <%= f.submit "Search" %>
 <% end %>
 
-
 <% @pets.each do |pet| %>
   <%= render partial: 'pet_stats', locals:{pet: pet} %>
 <% end %>
