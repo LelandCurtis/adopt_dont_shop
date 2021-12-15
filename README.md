@@ -1,4 +1,5 @@
 # Adopt, don't Shop
+![image](https://user-images.githubusercontent.com/15107515/146269633-94a68671-7893-4ea8-97ad-ae006028c33e.png)
 
 ### Existing database design
 ![visual-schema.png](https://i.postimg.cc/0ywZgQ1W/visual-schema.png)
